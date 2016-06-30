@@ -1,5 +1,8 @@
 class ApartmentsController < ApplicationController
+  before_action :authenticate_user!
+  load_and_authorize_resource
   before_action :set_apartment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /apartments
   # GET /apartments.json
@@ -20,7 +23,7 @@ class ApartmentsController < ApplicationController
 
   # GET /apartments/new
   def new
-    @apartment = Apartment.new
+    @apartment = current_user.apartments.build
   end
 
   # GET /apartments/1/edit
@@ -30,7 +33,7 @@ class ApartmentsController < ApplicationController
   # POST /apartments
   # POST /apartments.json
   def create
-    @apartment = Apartment.new(apartment_params)
+    @apartment = current_user.apartments.build(apartment_params)
 
     respond_to do |format|
       if @apartment.save
@@ -75,6 +78,6 @@ class ApartmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apartment_params
-      params.require(:apartment).permit(:latitude, :longitude, :address, :contact_info)
+      params.require(:apartment).permit(:latitude, :longitude, :address, :contact_info, :image)
     end
 end

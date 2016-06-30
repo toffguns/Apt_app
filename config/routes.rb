@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'admin/index'
+
+  get 'admin/update'
+
+  get "admin" => "admin#index"
+  put "admin/:id" => "admin#update"
+  patch "admin/:id" => "admin#update"
+
+  devise_for :users
   resources :apartments
   root 'apartments#index'
   # The priority is based upon order of creation: first created -> highest priority.

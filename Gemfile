@@ -22,7 +22,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+gem 'devise', '~> 3.4.1'
+gem 'textacular', '~> 3.0'
+gem 'cancancan'
+gem 'rolify'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -46,4 +49,6 @@ group :development do
   gem 'bootstrap-generators'
   gem 'geocoder'
   gem 'gmaps4rails'
+  gem 'paperclip'
+
 end
